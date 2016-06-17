@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        function repeat(str, num) {
+            return (new Array(num+1)).join(str);
+        }
+
+        function drawTriangle(height) {
+
+            var longestRow = repeat('#', height);
+
+            for(var i=0; i<height; i++) {
+                console.log(longestRow.substr(0, i+1));
+            }
+        }
+
+        drawTriangle(7);
+    </script>
+</body>
+</html>

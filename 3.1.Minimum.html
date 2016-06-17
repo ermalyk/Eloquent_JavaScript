@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function minPrintOfSomeValues(someNumberArgs) {
+            var allArgs = Array.prototype.slice.call(arguments);
+            var min = allArgs[0];
+            for(arg in allArgs) {
+                if(allArgs[arg] < min ) min = allArgs[arg];
+            }
+            return min;
+        }
+        console.log(minPrintOfSomeValues(11,1,2,3,4,5));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flattening</title>
+</head>
+<body>
+    <script>
+
+        function test(prevArr, currArr) {
+
+            // if current element is array execute reduce there too
+            if (Object.prototype.toString.call( currArr ) === '[object Array]') {
+                return Array.prototype.concat(prevArr, currArr.reduce(test, []));
+            }
+
+            return Array.prototype.concat(prevArr, currArr);
+        }
+
+        function flattening(arr) {
+            var resultArray = [];
+
+            resultArray = arr.reduce(test, []);
+
+            return resultArray;
+        }
+
+       var arrays = [[1, [2,3], 4], [5, 6], [7]];
+        //var arrays = [[1, 2, 3, 4], [5, 6], [7]];
+
+        resArr = flattening(arrays);
+        console.log(resArr.join(' - '));
+
+    </script>
+</body>
+</html>

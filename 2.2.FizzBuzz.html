@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function fizzBuzz(fromNumber, toNumber, fizzNumber, buzzNumber) {
+            var resultArr = [];
+            var fizzBuzzNumber = fizzNumber*buzzNumber;
+
+            for(var i=fromNumber; i<=toNumber; i++){
+                if((i % fizzBuzzNumber) == 0) {
+                    resultArr.push('FizzBuzz');
+                } else if((i % fizzNumber) == 0) {
+                    resultArr.push('Fizz');
+                } else if((i % buzzNumber) == 0) {
+                    resultArr.push('Buzz');
+                } else {
+                    resultArr.push(i.toString());
+                }
+            }
+
+            return resultArr.join(' ')
+        }
+
+        console.log(fizzBuzz(1,100, 3, 5));
+    </script>
+</body>
+</html>

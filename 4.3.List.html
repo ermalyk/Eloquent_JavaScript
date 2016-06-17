@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A List</title>
+</head>
+<body>
+<script>
+
+    function Node(value, next){
+        this.value = value;
+        this.next = next;
+    }
+
+    function List(){
+        this.firstNode = null;
+        this.lastNode = null;
+    }
+
+    List.prototype.arrayToList = function(arr) {
+        if(!arr) return undefined;
+
+        var nextNode = null;
+        var lastNode = null;
+        var list = new List();
+
+        list.firstNode =  new Node(arr[0],null);
+        list.lastNode =  list.firstNode;
+
+        for(var i=1; i<arr.length; i++){
+            list.lastNode.next = new Node(arr[i],null);
+            list.lastNode = list.lastNode.next;
+        }
+
+        return list;
+    };
+
+    List.prototype.listToArray = function(){
+        var arr = [];
+        var index = -1;
+        var nextNode = this.firstNode;
+
+        while(nextNode) {
+            index++;
+            arr[index] = nextNode.value;
+            nextNode = nextNode.next;
+        }
+        if(index >= 0) return arr;
+        return undefined;
+    };
+
+    List.prototype.nth = function(position){
+        var nextNode = this.firstNode;
+
+        while(nextNode.next && position > 0) {
+            position--;
+            nextNode = nextNode.next;
+        }
+        if(!nextNode) return null;
+
+        return nextNode;
+
+    };
+
+    List.prototype.nthRecursion = function(position){
+        var fNode = this.firstNode;
+        var nextNode = this.firstNode;
+
+        if(position <= 0 || nextNode === null ) {
+            return nextNode;
+        }
+
+        this.firstNode = nextNode.next;
+        nextNode = this.nthRecursion(--position);
+
+        this.firstNode = fNode;
+        return nextNode;
+    };
+
+    List.prototype.prepend = function(node){
+        var list = new List();
+        list.firstNode = new Node(node.value, null);
+        list.lastNode = list.firstNode;
+
+        var nextNode = this.firstNode;
+
+        while(nextNode) {
+            list.lastNode.next = new Node(nextNode.value, null);
+            list.lastNode = list.lastNode.next;
+            nextNode = nextNode.next;
+        }
+
+        return list;
+    };
+
+    List.prototype.print = function() {
+        var nextNode = this.firstNode;
+        while(nextNode) {
+            console.log(nextNode.value);
+            nextNode = nextNode.next;
+        }
+    }
+
+    console.log('------------arrayToList--------------');
+    var list = List.prototype.arrayToList([1,2,3,4,5]);
+    list.print();
+    console.log('--------------------------');
+
+    console.log('-----------nth---------------');
+    var nthNode;
+    if(nthNode = list.nth(0)) console.log(nthNode.value);
+    if(nthNode = list.nth(4)) console.log(nthNode.value);
+    console.log('--------------------------');
+
+    console.log('-----------nth Recursion---------------');
+    var nthNodeRec;
+    if(nthNodeRec = list.nthRecursion(0)) console.log(nthNodeRec.value);
+    if(nthNodeRec = list.nthRecursion(4)) console.log(nthNodeRec.value);
+    console.log('--------------------------');
+
+    console.log('------------arrFromList--------------');
+    var arrFromList;
+    if(arrFromList = list.listToArray()) console.log(arrFromList.join(' '));
+    console.log('--------------------------');
+
+    console.log('------------prepend--------------');
+    var prependList ;
+    if(prependList = list.prepend(new Node(10,null))) prependList.print();
+    console.log('--------------------------');
+
+</script>
+</body>
+</html>

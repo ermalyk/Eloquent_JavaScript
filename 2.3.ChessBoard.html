@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        function repeat(str, num) {
+            return (new Array(num+1)).join(str);
+        }
+
+        function chessBoardStylePrint(height, width, pattern) {
+
+            var linePattern = repeat(pattern, width / (pattern.length / 2) + 1);
+
+            for (var i = 0; i < height; i++) {
+                console.log(((i + 1) % 2 == 0 ) ? linePattern.substr(0, width) : linePattern.substr(1, width));
+            }
+        }
+
+        chessBoardStylePrint(8, 8, '# ');
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function createRange(startValue, endValue, step) {
+        if(!startValue || !endValue) {
+            return undefined;
+        }
+
+        if(!step || step == 0){
+            step = 1;
+        }
+
+        if(startValue > endValue && step > 0){
+            startValue = startValue ^ endValue;
+            endValue   = startValue ^ endValue;
+            startValue = startValue ^ endValue;
+        }
+
+        var rangeArr = [];
+
+        for(var i=startValue; i<= endValue; i+= step) {
+            rangeArr.push(i);
+        }
+        return rangeArr;
+    }
+
+    function sumArrElements(arr){
+        if(!arr) return undefined;
+        var sum = 0;
+
+        for(arrIndex in arr){
+            sum += arr[arrIndex];
+        }
+        return sum;
+
+    }
+
+    var range = createRange(1,10,1);
+    console.log(sumArrElements(range));
+
+</script>
+</body>
+</html>

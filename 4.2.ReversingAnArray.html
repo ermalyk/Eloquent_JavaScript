@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reversing an Array</title>
+</head>
+<body>
+<script>
+    function reverseArr(arr) {
+        if(!arr) {
+            return undefined;
+        }
+
+        for(var i = 0; i<Math.floor(arr.length/2); i++){
+            arr[i] = arr[i] ^ arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = arr[i] ^ arr[arr.length - 1 - i];
+            arr[i] = arr[i] ^ arr[arr.length - 1 - i];
+        }
+
+        return arr;
+    }
+
+    Array.prototype.reverseAlternative = function (){
+        if(!this) return undefined;
+        var sum = 0;
+
+        return reverseArr(this);
+
+    }
+
+    console.log(a + ' ' + b);
+
+    var arr = [1,2,3,4,5,6,7];
+    console.log('-----------reverseArr---------------------');
+    console.log(arr.join(' '));
+    console.log('->');
+    console.log(reverseArr(arr).join(' '));
+    console.log('-------------------------------');
+
+    console.log('-----------Array.prototype.reverseAlternative--------------------');
+    var arr1 = [1,2,3,4,5,6,7];
+    console.log(arr1.join(' '));
+    console.log('->');
+    console.log(arr1.reverseAlternative().join(' '));
+    console.log('-------------------------------');
+
+
+    /*
+     for(var i=0; i< arr.length; i++) {
+     sum += arr[i];
+     }
+     function reverse(array, index) {
+     return array.slice(index)
+     .concat(array.slice(0,index));
+     }
+
+     var aa =reverse(['a','b','c','d','e'], 3);
+     console.log(aa.join(' '));
+     */
+</script>
+</body>
+</html>
